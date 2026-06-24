@@ -1,0 +1,89 @@
+<mxfile host="app.diagrams.net" modified="2026-06-10T00:35:00.000Z" agent="Trae" version="22.1.0" type="device">
+  <diagram id="erd-opusjob" name="ERD (Crow's Foot)">
+    <mxGraphModel dx="1434" dy="832" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="2" value="<div style=&quot;font-size:14px&quot;><b>users</b></div><div style=&quot;font-size:12px&quot;>PK id INT(11) NN AI&lt;br/&gt;name VARCHAR(255) NN&lt;br/&gt;email VARCHAR(255) NN&lt;br/&gt;location VARCHAR(255) NULL DEFAULT 'Santiago'&lt;br/&gt;avatar VARCHAR(255) NULL&lt;br/&gt;password VARCHAR(255) NN&lt;br/&gt;role ENUM('user','recruiter') NULL DEFAULT 'user'&lt;br/&gt;created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP</div>" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#94a3b8;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="60" width="430" height="260" as="geometry"/>
+        </mxCell>
+        <mxCell id="3" value="<div style=&quot;font-size:14px&quot;><b>jobs</b></div><div style=&quot;font-size:12px&quot;>PK id INT(11) NN AI&lt;br/&gt;title VARCHAR(255) NN&lt;br/&gt;image VARCHAR(255) NULL DEFAULT 'default.jpg'&lt;br/&gt;company VARCHAR(255) NN&lt;br/&gt;location VARCHAR(255) NN&lt;br/&gt;salary VARCHAR(100) NN&lt;br/&gt;type VARCHAR(50) NN&lt;br/&gt;description TEXT NULL&lt;br/&gt;created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP&lt;br/&gt;status ENUM('draft','published') NULL DEFAULT 'published'&lt;br/&gt;requirements_tech TEXT NULL&lt;br/&gt;requirements_soft TEXT NULL&lt;br/&gt;benefits TEXT NULL&lt;br/&gt;deadline DATE NULL&lt;br/&gt;FK recruiter_id INT(11) NULL → users.id&lt;br/&gt;updated_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</div>" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#94a3b8;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="560" y="40" width="520" height="400" as="geometry"/>
+        </mxCell>
+        <mxCell id="4" value="<div style=&quot;font-size:14px&quot;><b>job_likes</b> (postulaciones)</div><div style=&quot;font-size:12px&quot;>PK id INT(11) NN AI&lt;br/&gt;FK user_id INT(11) NN → users.id&lt;br/&gt;FK job_id INT(11) NN → jobs.id&lt;br/&gt;created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP&lt;br/&gt;status VARCHAR(32) NN DEFAULT 'postulacion_recibida'&lt;br/&gt;updated_at DATETIME NULL&lt;br/&gt;UQ (user_id, job_id)</div>" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#94a3b8;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="560" y="500" width="520" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="5" value="<div style=&quot;font-size:14px&quot;><b>candidates</b></div><div style=&quot;font-size:12px&quot;>PK id INT(11) NN AI&lt;br/&gt;name VARCHAR(255) NN&lt;br/&gt;profession VARCHAR(255) NN&lt;br/&gt;location VARCHAR(255) NN&lt;br/&gt;salary_expectation VARCHAR(100) NN&lt;br/&gt;skills VARCHAR(255) NN&lt;br/&gt;bio TEXT NULL&lt;br/&gt;image VARCHAR(255) NULL&lt;br/&gt;created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP&lt;br/&gt;email VARCHAR(255) NULL&lt;br/&gt;phone VARCHAR(50) NULL&lt;br/&gt;cv_url VARCHAR(255) NULL&lt;br/&gt;years_experience INT(11) NN DEFAULT 0</div>" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#94a3b8;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="410" width="430" height="310" as="geometry"/>
+        </mxCell>
+        <mxCell id="6" value="<div style=&quot;font-size:14px&quot;><b>candidate_likes</b> (pipeline)</div><div style=&quot;font-size:12px&quot;>PK id INT(11) NN AI&lt;br/&gt;FK recruiter_id INT(11) NN → users.id&lt;br/&gt;FK candidate_id INT(11) NN → candidates.id&lt;br/&gt;created_at DATETIME NULL DEFAULT CURRENT_TIMESTAMP&lt;br/&gt;status VARCHAR(32) NN DEFAULT 'postulacion_recibida'&lt;br/&gt;FK job_id INT(11) NULL → jobs.id&lt;br/&gt;updated_at DATETIME NULL&lt;br/&gt;UQ (recruiter_id, candidate_id)</div>" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#94a3b8;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="500" width="420" height="240" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="10" value="publica" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;" edge="1" parent="1" source="2" target="3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="0..N" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#e2e8f0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="520" y="90" width="50" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#e2e8f0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="505" y="110" width="30" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="20" value="recibe postulaciones" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;" edge="1" parent="1" source="3" target="4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="21" value="1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#e2e8f0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="800" y="458" width="30" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="22" value="0..N" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#e2e8f0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="830" y="468" width="50" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="30" value="postula a" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;" edge="1" parent="1" source="2" target="4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="31" value="1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#e2e8f0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="500" y="600" width="30" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="32" value="0..N" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#e2e8f0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="530" y="612" width="50" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="40" value="guarda/gestiona" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;" edge="1" parent="1" source="2" target="6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="41" value="1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#e2e8f0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="640" width="30" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="42" value="0..N" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#e2e8f0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1098" y="652" width="50" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="50" value="es guardado por" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;" edge="1" parent="1" source="5" target="6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="51" value="1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#e2e8f0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="500" y="520" width="30" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="52" value="0..N" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#e2e8f0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="530" y="532" width="50" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="60" value="asignación opcional" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;dashed=1;" edge="1" parent="1" source="6" target="3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="61" value="0..1" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#e2e8f0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="450" width="50" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="62" value="0..N" style="text;html=1;strokeColor=none;fillColor=none;fontColor=#e2e8f0;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="450" width="50" height="20" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="90" value="<b>Reglas de negocio / integridad referencial</b><br/>1) Un Job puede existir sin recruiter_id (legacy); en el sistema nuevo debería ser el reclutador dueño.<br/>2) JobLike representa una postulación real (usuario→oferta) y debe pertenecer a un job válido.<br/>3) CandidateLike representa un candidato guardado por el reclutador y puede asignarse opcionalmente a una vacante (job_id).<br/>4) UQ (user_id, job_id) evita múltiples postulaciones duplicadas a la misma vacante." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111827;strokeColor=#334155;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="60" width="420" height="220" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

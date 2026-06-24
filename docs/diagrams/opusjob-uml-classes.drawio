@@ -1,0 +1,92 @@
+<mxfile host="app.diagrams.net" modified="2026-06-10T00:45:00.000Z" agent="Trae" version="22.1.0" type="device">
+  <diagram id="uml-classes-opusjob" name="UML Clases">
+    <mxGraphModel dx="1434" dy="832" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="10" value="<div style=&quot;font-size:14px&quot;><b>&lt;&lt;framework&gt;&gt; App</b></div><hr/><div style=&quot;font-size:12px&quot;>+ currentController: string<br/>+ currentMethod: string<br/>+ params: array</div><hr/><div style=&quot;font-size:12px&quot;>+ __construct()<br/>+ getUrl(): array<br/>+ resolveAliases(url: array): array</div>" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#94a3b8;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="50" width="360" height="210" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="11" value="<div style=&quot;font-size:14px&quot;><b>&lt;&lt;framework&gt;&gt; Controller</b></div><hr/><div style=&quot;font-size:12px&quot;>+ model(name: string): object<br/>+ view(path: string, data: array): void<br/>+ json(status: int, payload: mixed): void</div><div style=&quot;font-size:12px&quot;><i>Factory Method</i>: model()</div>" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#94a3b8;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="300" width="360" height="210" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="12" value="<div style=&quot;font-size:14px&quot;><b>&lt;&lt;infrastructure&gt;&gt; Database</b></div><hr/><div style=&quot;font-size:12px&quot;>- dbh: PDO<br/>- stmt: PDOStatement<br/>- lastSql: string</div><hr/><div style=&quot;font-size:12px&quot;>+ __construct()<br/>+ query(sql: string): void<br/>+ bind(param: string, value: mixed, type?: int): void<br/>+ execute(): bool<br/>+ resultSet(): array&lt;object&gt;<br/>+ single(): object|null<br/>+ rowCount(): int</div>" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#94a3b8;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="500" y="70" width="430" height="280" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="13" value="<div style=&quot;font-size:14px&quot;><b>&lt;&lt;infrastructure&gt;&gt; Logger</b></div><hr/><div style=&quot;font-size:12px&quot;>+ info(event: string, data: array): void<br/>+ warning(event: string, data: array): void<br/>+ error(event: string, data: array): void</div>" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#94a3b8;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="980" y="70" width="270" height="170" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="14" value="<div style=&quot;font-size:14px&quot;><b>&lt;&lt;infrastructure&gt;&gt; ErrorHandler</b></div><hr/><div style=&quot;font-size:12px&quot;>+ register(): void<br/>+ handleException(e: Throwable): void<br/>+ handleError(...): bool</div>" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#94a3b8;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="980" y="270" width="270" height="170" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="20" value="<div style=&quot;font-size:14px&quot;><b>&lt;&lt;controller&gt;&gt; Home</b></div><hr/><div style=&quot;font-size:12px&quot;>- jobModel: Job</div><hr/><div style=&quot;font-size:12px&quot;>+ __construct()<br/>+ index(): void<br/>+ feed(): void</div>" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#111827;strokeColor=#94a3b8;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="560" width="300" height="170" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="21" value="<div style=&quot;font-size:14px&quot;><b>&lt;&lt;controller&gt;&gt; Users</b></div><hr/><div style=&quot;font-size:12px&quot;>- userModel: User<br/>- jobModel: Job</div><hr/><div style=&quot;font-size:12px&quot;>+ login(), register(), logout()<br/>+ me(), profile(), public(id)<br/>+ myAccountJobsData()</div>" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#111827;strokeColor=#94a3b8;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="380" y="560" width="330" height="190" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="22" value="<div style=&quot;font-size:14px&quot;><b>&lt;&lt;controller&gt;&gt; Recruiter</b></div><hr/><div style=&quot;font-size:12px&quot;>- candidateModel: Candidate<br/>- userModel: User<br/>- jobModel: Job</div><hr/><div style=&quot;font-size:12px&quot;>+ pipeline(), pipelineData(), pipelineUpdate()<br/>+ createJob(), saveJob()<br/>+ myJobs(), myJobsData(), jobStatus(), deleteJob()</div>" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#111827;strokeColor=#94a3b8;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="730" y="560" width="420" height="210" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="23" value="<div style=&quot;font-size:14px&quot;><b>&lt;&lt;controller&gt;&gt; Matches</b></div><hr/><div style=&quot;font-size:12px&quot;>- userModel: User</div><hr/><div style=&quot;font-size:12px&quot;>+ index()<br/>+ likeJob(), clearJobs(), listJobs()<br/>+ likeCandidate(), clearCandidates(), listCandidates()</div>" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#111827;strokeColor=#94a3b8;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1170" y="560" width="360" height="200" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="30" value="<div style=&quot;font-size:14px&quot;><b>&lt;&lt;repository&gt;&gt; User</b></div><hr/><div style=&quot;font-size:12px&quot;>- db: Database</div><hr/><div style=&quot;font-size:12px&quot;>+ login(email,pw)<br/>+ register(data)<br/>+ getUserById(id)<br/>+ updateProfile(data)<br/>+ likeJob(userId,jobId)<br/>+ getRecruiterPipeline(recruiterId, filters)<br/>+ updateRecruiterPipeline(...)</div><div style=&quot;font-size:12px&quot;><i>Repository</i>: acceso a users, job_likes, candidate_likes</div>" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#94a3b8;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="500" y="380" width="430" height="230" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="31" value="<div style=&quot;font-size:14px&quot;><b>&lt;&lt;repository&gt;&gt; Job</b></div><hr/><div style=&quot;font-size:12px&quot;>- db: Database</div><hr/><div style=&quot;font-size:12px&quot;>+ getJobs(location,limit,offset)<br/>+ createJob(data), updateJob(data)<br/>+ getRecruiterJobsWithStats(recruiterId)<br/>+ getAccountJobsWithStats(userId)<br/>+ claimOrphanJobsForAccount(userId, companyName)</div>" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#94a3b8;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="980" y="460" width="430" height="210" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="32" value="<div style=&quot;font-size:14px&quot;><b>&lt;&lt;repository&gt;&gt; Candidate</b></div><hr/><div style=&quot;font-size:12px&quot;>- db: Database</div><hr/><div style=&quot;font-size:12px&quot;>+ getCandidates(limit,offset)</div>" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#94a3b8;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="980" y="380" width="270" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="40" value="&lt;&lt;utility&gt;&gt; SecurityHelper&#xa;+ generate_csrf_token(): string&#xa;+ verify_csrf_token(token): bool&#xa;+ esc(str): string" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#111827;strokeColor=#64748b;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="70" width="260" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="41" value="&lt;&lt;utility&gt;&gt; SessionHelper&#xa;+ isLoggedIn(): bool&#xa;+ isRecruiter(): bool&#xa;+ flash(name,msg): void" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#111827;strokeColor=#64748b;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="210" width="260" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Generalization: controllers extend Controller -->
+        <mxCell id="100" value="" style="endArrow=block;endFill=0;html=1;strokeColor=#94a3b8;" edge="1" parent="1" source="20" target="11"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="101" value="" style="endArrow=block;endFill=0;html=1;strokeColor=#94a3b8;" edge="1" parent="1" source="21" target="11"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="102" value="" style="endArrow=block;endFill=0;html=1;strokeColor=#94a3b8;" edge="1" parent="1" source="22" target="11"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="103" value="" style="endArrow=block;endFill=0;html=1;strokeColor=#94a3b8;" edge="1" parent="1" source="23" target="11"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- Dependencies -->
+        <mxCell id="110" value="uses" style="dashed=1;endArrow=open;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;" edge="1" parent="1" source="30" target="12"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="111" value="uses" style="dashed=1;endArrow=open;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;" edge="1" parent="1" source="31" target="12"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="112" value="uses" style="dashed=1;endArrow=open;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;" edge="1" parent="1" source="32" target="12"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="120" value="has" style="endArrow=open;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;" edge="1" parent="1" source="22" target="31"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="121" value="has" style="endArrow=open;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;" edge="1" parent="1" source="22" target="30"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="122" value="has" style="endArrow=open;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;" edge="1" parent="1" source="22" target="32"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="123" value="has" style="endArrow=open;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;" edge="1" parent="1" source="21" target="30"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="124" value="has" style="endArrow=open;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;" edge="1" parent="1" source="21" target="31"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="125" value="has" style="endArrow=open;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;" edge="1" parent="1" source="20" target="31"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="126" value="has" style="endArrow=open;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;" edge="1" parent="1" source="23" target="30"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="140" value="logs" style="dashed=1;endArrow=open;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;" edge="1" parent="1" source="12" target="13"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="141" value="logs" style="dashed=1;endArrow=open;html=1;strokeColor=#94a3b8;fontColor=#e2e8f0;" edge="1" parent="1" source="14" target="13"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <mxCell id="150" value="&lt;b&gt;Nota&lt;/b&gt;&lt;br/&gt;Los modelos actúan como &lt;i&gt;Repositories&lt;/i&gt; (acceso a BD) y las entidades ERD se materializan como filas/objetos en consultas.&lt;br/&gt;El pipeline combina fuentes: candidate_likes (candidates) + job_likes (users) para representar postulaciones reales." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111827;strokeColor=#334155;fontColor=#e2e8f0;align=left;spacingLeft=10;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="360" width="260" height="210" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
